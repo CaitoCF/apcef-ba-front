@@ -10,6 +10,7 @@
                     </div>
                 </button>
                 <p>Tabela de Jogos</p>
+
                 <button>
                     <div class="aux">
                         <div class="button">
@@ -18,6 +19,7 @@
                     </div>
                 </button>
                 <p>Regulamento</p>
+                
                 <button>
                     <div class="aux">
                         <div class="button">
