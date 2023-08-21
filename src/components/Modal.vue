@@ -1,19 +1,23 @@
 <template>
     <div class="modal-backdrop">
         <div class="modal">
-            <header class="modal-header">
-                <slot name="header">
-                    Selecione a modalidade:
-                </slot>
-            </header>
+            <div>
+                <header class="modal-header">
+                    <slot name="header">
+                        Selecione a modalidade:
+                    </slot>
+                </header>
 
-            <section class="modal-body">
-                <select name="modalidade" v-model="id_modality" class="form-control">
-                    <option :value="item.id" v-for="(item, index) in modalities" :key="index">
-                        {{ item.name }}
-                    </option>
-                </select>
-            </section>
+                <section class="modal-body">
+                    <select name="modalidade" v-model="id_modality" class="form-control">
+                        <option :value="item.id" v-for="(item, index) in modalities" :key="index">
+                            {{ item.name }}
+                        </option>
+                    </select>
+                </section>
+            </div>
+
+            <button class="search" v-on:click="pesquisar"><font-awesome-icon icon="fa-solid fa-magnifying-glass" style="color: #ffffff;" class="icon" /></button>
         </div>
     </div>
 </template>
@@ -31,6 +35,9 @@ export default {
         close() {
             this.$emit('close');
         },
+        pesquisar() {
+            this.$emit('changed', this.id_modality);
+        }
     },
     async mounted() {
         this.modalities = [{ 'id': 1, 'name': 'Futebol' }];
@@ -58,8 +65,8 @@ export default {
     box-shadow: 2px 2px 20px 1px;
     overflow-x: auto;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    /* flex-direction: column; */
+    /* align-items: flex-start; */
     width: 100%;
 }
 
@@ -81,7 +88,23 @@ export default {
 }
 
 select {
-    width: 35%;
+    width: 100%;
+}
+
+.search {
+    background-color: green;
+    border: none;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 4px 2px;
+    border-radius: 50%;
+    height: 100%;
+    margin-top: 4%;
+    margin-left: 5%;
 }
 
 @media (pointer:coarse) {
@@ -90,8 +113,8 @@ select {
         left: 0;
     }
 
-    select {
-        width: 75%;
+    .search {
+        margin-top: 9%;
     }
 }
 </style>

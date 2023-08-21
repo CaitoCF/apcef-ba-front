@@ -40,7 +40,7 @@
         </div>
 
         <div class='row'>
-            <a href="#" @click="page = 'informacoes'">
+            <a href="#" @click="page = 'info'">
                 <div class="aux">
                     <div class="button">
                         <font-awesome-icon icon="fa-solid fa-circle-info" style="color: #ffffff;" class="icon" />
@@ -48,7 +48,7 @@
                 </div>
                 <p>Informações</p>
             </a>
-            <a href="#" @click="page = 'sobre'">
+            <a href="#" @click="page = 'about'">
                 <div class="aux">
                     <div class="button">
                         <font-awesome-icon icon="fa-solid fa-circle-question" style="color: #ffffff;" class="icon" />
@@ -60,27 +60,43 @@
     </div>
 
     <div class="modaldiv" v-if="page == 'modality'">
-        <modal></modal>
+        <modal @changed="select_modality"></modal>
+    </div>
+
+    <div v-if="page == 'about'">
+        <about></about>
+    </div>
+
+    <div v-if="page == 'info'">
+        <info></info>
     </div>
 </template>
 
 <script>
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faVolleyball, faTrophy, faFileContract, faBookOpen, faCircleInfo, faCircleQuestion } from '@fortawesome/free-solid-svg-icons'
-library.add(faVolleyball, faTrophy, faFileContract, faBookOpen, faCircleInfo, faCircleQuestion)
-import modal from '../components/Modal.vue'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faVolleyball, faTrophy, faFileContract, faBookOpen, faCircleInfo, faCircleQuestion, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+library.add(faVolleyball, faTrophy, faFileContract, faBookOpen, faCircleInfo, faCircleQuestion, faMagnifyingGlass);
+import modal from '../components/Modal.vue';
+import about from './About.vue';
+import info from './Info.vue';
 
 export default {
     components: {
-        modal
+        modal,
+        about,
+        info
     },
     name: "home-site",
     data() {
         return {
             page: "",
+            id_modality: null,
         };
     },
     methods: {
+        select_modality(item) {
+            this.id_modality = item;
+        }
     },
 }
 </script>
@@ -103,7 +119,6 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* margin-top: 50px; */
     gap: 4vw;
 }
 
@@ -139,8 +154,6 @@ p {
 
 a {
     display: inline-grid;
-    /* justify-content: center; */
-    /* align-items: center; */
     min-width: 80%;
     gap: 1rem;
     text-decoration: none;
