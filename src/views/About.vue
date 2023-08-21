@@ -53,11 +53,12 @@ export default {
     display: inline;
     align-items: start;
     justify-content: flex-start;
-    height: 100vh;
+    height: 90%;
     left: 50%;
     transform: translateX(-50%);
     width: 50vw;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .title {
