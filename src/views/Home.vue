@@ -1,7 +1,7 @@
 <template>
     <div id="home">
         <div class='row'>
-            <a href="#" @click="page = 'modality'">
+            <a href="#" @click="modality = true, page = 'games'">
                 <div class="aux">
                     <div class="button">
                         <font-awesome-icon icon="fa-solid fa-volleyball" style="color: #ffffff;" class="icon" />
@@ -10,7 +10,7 @@
                 <p>Tabela de Jogos</p>
             </a>
 
-            <a href="#" @click="page = 'modality'">
+            <a href="#" @click="modality = true">
                 <div class="aux">
                     <div class="button">
                         <font-awesome-icon icon="fa-solid fa-trophy" style="color: #ffffff;" class="icon" />
@@ -21,7 +21,7 @@
         </div>
 
         <div class='row'>
-            <a href="#" @click="page = 'regulamento'">
+            <a href="#" @click="modality = true">
                 <div class="aux">
                     <div class="button">
                         <font-awesome-icon icon="fa-solid fa-file-contract" style="color: #ffffff;" class="icon" />
@@ -59,7 +59,7 @@
         </div>
     </div>
 
-    <div class="modaldiv" v-if="page == 'modality'">
+    <div class="modaldiv" v-if="modality == true">
         <modal @changed="select_modality"></modal>
     </div>
 
@@ -70,6 +70,10 @@
     <div v-if="page == 'info'">
         <info></info>
     </div>
+
+    <div v-if="page == 'games' && modality == false">
+        <games :id_modality=id_modality></games>
+    </div>
 </template>
 
 <script>
@@ -79,23 +83,27 @@ library.add(faVolleyball, faTrophy, faFileContract, faBookOpen, faCircleInfo, fa
 import modal from '../components/Modal.vue';
 import about from './About.vue';
 import info from './Info.vue';
+import games from './Games.vue';
 
 export default {
     components: {
         modal,
         about,
-        info
+        info,
+        games
     },
     name: "home-site",
     data() {
         return {
             page: "",
             id_modality: null,
+            modality: false,
         };
     },
     methods: {
         select_modality(item) {
             this.id_modality = item;
+            this.modality = false;
         }
     },
 }

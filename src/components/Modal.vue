@@ -27,7 +27,7 @@ export default {
     name: 'modal-site',
     data() {
         return {
-            id_modality: null,
+            id_modality: 1,
             modalities: {},
         }
     },
@@ -45,7 +45,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .modal-backdrop {
     position: fixed;
     top: 0%;
