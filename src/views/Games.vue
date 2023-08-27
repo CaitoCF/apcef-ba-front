@@ -118,13 +118,12 @@ hr {
 
 .mid {
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
     flex-direction: column;
     width: 50vw;
     gap: 3rem;
-    margin-top: 15%;
+    margin-top: 10%;
     overflow-y: auto;
+    height: 60vh;
 }
 
 .header {
@@ -149,7 +148,7 @@ hr {
     padding: 10px;
     font-size: 20px;
     border-radius: 50%;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -242,7 +241,6 @@ select {
 
     .mid {
         width: 100vw;
-        height: 100%;
     }
 
     .little-box {
