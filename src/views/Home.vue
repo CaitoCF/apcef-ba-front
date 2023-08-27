@@ -21,13 +21,13 @@
         </div>
 
         <div class='row'>
-            <a href="#" @click="modality = true">
+            <a href="#" @click="page = 'regulation'">
                 <div class="aux">
                     <div class="button">
                         <font-awesome-icon icon="fa-solid fa-file-contract" style="color: #ffffff;" class="icon" />
                     </div>
                 </div>
-                <p>Regulamento</p>
+                <p>Regulamentos</p>
             </a>
             <a href="#" @click="page = 'guia'">
                 <div class="aux">
@@ -74,6 +74,10 @@
     <div v-if="page == 'games' && modality == false">
         <games :id_modality=id_modality></games>
     </div>
+
+    <div v-if="page == 'regulation' && modality == false">
+        <regulation :id_modality=id_modality></regulation>
+    </div>
 </template>
 
 <script>
@@ -84,13 +88,15 @@ import modal from '../components/Modal.vue';
 import about from './About.vue';
 import info from './Info.vue';
 import games from './Games.vue';
+import regulation from './Regulation.vue';
 
 export default {
     components: {
         modal,
         about,
         info,
-        games
+        games,
+        regulation,
     },
     name: "home-site",
     data() {
