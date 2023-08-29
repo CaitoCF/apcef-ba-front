@@ -11,7 +11,7 @@
                 <div class="select">
                     <section class="body">
                         <select name="rodada" v-model="id_round">
-                            <option :value="item.id" v-for="(item, index) in rodadas" :key="index">
+                            <option :value="item.id" v-for="(item, index) in rounds" :key="index">
                                 {{ item.name }}
                             </option>
                         </select>
@@ -29,16 +29,16 @@
         <div class="mid">
             <div class='row' v-for="(item, index) in games" :key="index">
                 <div class="info">
-                    <h5 style="color: #163573;">Local: {{ item.local }}</h5>
-                    <h5 style="color: #163573;">{{ item.date_time }}</h5>
+                    <h5 style="color: #163573;">Local: {{ item.placeName }}</h5>
+                    <h5 style="color: #163573;">{{ item.matchDate }}</h5>
                 </div>
                 <div class="game">
-                    <div class="box little-box">{{ item.id }}</div>
-                    <div class="box team">{{ item.team_1 }}</div>
-                    <div class="box little-box">{{ item.team_1_points }}</div>
+                    <div class="box little-box">{{ item.order }}</div>
+                    <div class="box team">{{ item.firstTeamName }}</div>
+                    <div class="box little-box">{{ item.firstTeamScore }}</div>
                     <h2 style="color: #163573;">X</h2>
-                    <div class="box little-box">{{ item.team_2_points }}</div>
-                    <div class="box team">{{ item.team_2 }}</div>
+                    <div class="box little-box">{{ item.secondTeamScore }}</div>
+                    <div class="box team">{{ item.secondTeamName }}</div>
                 </div>
                 <hr>
             </div>
@@ -50,6 +50,7 @@
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { } from '@fortawesome/free-solid-svg-icons';
 library.add();
+import axios from 'axios';
 
 export default {
     props: ["id_modality"],
@@ -58,8 +59,8 @@ export default {
     name: "games-site",
     data() {
         return {
-            id_round: 1,
-            rodadas: [],
+            id_round: '2645d59d-d469-442a-0487-08dba29af4fd',
+            rounds: [],
             games: [],
         };
     },
@@ -72,18 +73,19 @@ export default {
         },
     },
     async mounted() {
-        this.rodadas = [
-            { 'id': 1, 'name': 'Rodada 1' },
-            { 'id': 2, 'name': 'Rodada 2' },
-            { 'id': 3, 'name': 'Semifinal' },
-            { 'id': 4, 'name': 'Final' },
-        ];
-        this.games = [
-            { 'id': 1, 'team_1': 'time A', 'team_2': 'Time B', 'team_1_points': 0, 'team_2_points': 0, 'date_time': '09/09/2023 14:00', 'local': 'APCEF/BA' },
-            { 'id': 2, 'team_1': 'time C', 'team_2': 'Time D', 'team_1_points': 0, 'team_2_points': 0, 'date_time': '09/09/2023 17:00', 'local': 'APCEF/BA' },
-            { 'id': 3, 'team_1': 'time A', 'team_2': 'Time B', 'team_1_points': 0, 'team_2_points': 0, 'date_time': '09/09/2023 14:00', 'local': 'APCEF/BA' },
-            { 'id': 4, 'team_1': 'time C', 'team_2': 'Time D', 'team_1_points': 0, 'team_2_points': 0, 'date_time': '09/09/2023 17:00', 'local': 'APCEF/BA' }
-        ];
+        await axios
+            .get('https://apcefbaapias.azurewebsites.net/v1/web-app/rounds/'+this.id_modality)
+            .then(response => (
+                this.rounds = response.data
+            ));
+            
+        await axios
+            .get('https://apcefbaapias.azurewebsites.net/v1/web-app/rounds/matches?RoundId='+this.id_round+'&ModalityId='+this.id_modality)
+            .then(response => (
+                this.games = response.data
+            ));
+                
+        console.log(this.games)
     }
 }
 </script>
@@ -219,6 +221,7 @@ select {
     display: flex;
     flex-direction: column;
     gap: .5rem;
+    align-items: center;
 }
 
 @media (pointer:coarse) {

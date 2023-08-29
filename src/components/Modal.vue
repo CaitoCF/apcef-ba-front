@@ -23,11 +23,13 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: 'modal-site',
     data() {
         return {
-            id_modality: 1,
+            id_modality: "259561ee-734e-44dd-9567-08dba1eef486",
             modalities: {},
         }
     },
@@ -40,7 +42,11 @@ export default {
         }
     },
     async mounted() {
-        this.modalities = [{ 'id': 1, 'name': 'Futebol' }];
+        await axios
+            .get('https://apcefbaapias.azurewebsites.net/v1/web-app/modalities')
+            .then(response => (
+                this.modalities = response.data
+            ));
     },
 };
 </script>
