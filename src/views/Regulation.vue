@@ -1,5 +1,10 @@
 <template>
     <div id="regulation">
+        <div style="max-width: 10%;">
+            <button class="icon" v-on:click="voltar" style="cursor: pointer;"><font-awesome-icon icon="fa-solid fa-arrow-left" style="color: #163573; height: 30px; width: 30px;" />
+            </button>
+        </div>
+
         <div class="title">
             <font-awesome-icon icon="fa-solid fa-file-contract" class="icon" />
             <h1 class="titleh1">Regulamentos</h1>
@@ -87,9 +92,10 @@ export default {
         };
     },
     methods: {
+        voltar() {
+            location.reload();
+        }
     },
-    async mounted() {
-    }
 }
 </script>
 
@@ -138,6 +144,9 @@ export default {
 .icon {
     color: #163573;
     font-size: xxx-large;
+    border: none;
+	background: none;
+	cursor: pointer;
 }
 
 @media (pointer:coarse) {

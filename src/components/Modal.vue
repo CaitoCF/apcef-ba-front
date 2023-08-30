@@ -111,6 +111,7 @@ select {
     height: 100%;
     margin-top: 4%;
     margin-left: 5%;
+    cursor: pointer;
 }
 
 @media (pointer:coarse) {

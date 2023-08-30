@@ -1,5 +1,10 @@
 <template>
     <div id="about">
+        <div style="max-width: 10%;">
+            <button class="icon" v-on:click="voltar" style="cursor: pointer;"><font-awesome-icon icon="fa-solid fa-arrow-left" style="color: #163573; height: 30px; width: 30px;" />
+            </button>
+        </div>
+
         <div class="title">
             <font-awesome-icon icon="fa-solid fa-circle-question" class="icon" /> <h1 style="font-size: 3rem; color: #163573; font-weight: 500;">Sobre</h1>
         </div>
@@ -41,7 +46,9 @@ export default {
         };
     },
     methods: {
-
+        voltar() {
+            location.reload();
+        }
     },
 }
 </script>
@@ -85,6 +92,9 @@ export default {
 .icon {
     color: #163573;
     font-size: xxx-large;
+    border: none;
+	background: none;
+	cursor: pointer;
 }
 
 @media (pointer:coarse) {

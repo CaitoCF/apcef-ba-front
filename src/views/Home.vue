@@ -82,8 +82,8 @@
 
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faVolleyball, faTrophy, faFileContract, faBookOpen, faCircleInfo, faCircleQuestion, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
-library.add(faVolleyball, faTrophy, faFileContract, faBookOpen, faCircleInfo, faCircleQuestion, faMagnifyingGlass);
+import { faVolleyball, faTrophy, faFileContract, faBookOpen, faCircleInfo, faCircleQuestion, faMagnifyingGlass, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+library.add(faVolleyball, faTrophy, faFileContract, faBookOpen, faCircleInfo, faCircleQuestion, faMagnifyingGlass, faArrowLeft);
 import modal from '../components/Modal.vue';
 import about from './About.vue';
 import info from './Info.vue';
