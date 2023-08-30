@@ -77,6 +77,7 @@ export default {
 		async pesquisar() {
 			let res = await axios.get('https://apcefbaapias.azurewebsites.net/v1/web-app/rounds/matches?RoundId=' + this.id_round + '&ModalityId=' + this.id_modality);
 			this.games = res.data;
+			this.games.forEach(this.check_team);
 		},
 		voltar() {
 			location.reload();
@@ -92,6 +93,121 @@ export default {
 			let minuto = data.getMinutes().toString();
 			let minutoF = (minuto.length == 1) ? '0'+minuto : minuto;
 			return diaF+"/"+mesF+' '+horaF+':'+minutoF;
+		},
+		async check_team(game) {
+			if (game.firstTeamName == 'A definir' || game.secondTeamName == 'A definir') {
+				let response = await axios.get('https://apcefbaapias.azurewebsites.net/v1/web-app/modalities');
+				let modalities = response.data;
+				let modality = modalities.find((element) => element.id == this.id_modality).name;
+				switch (modality) {
+					case 'Basquete':
+					case 'Tênis mesa masc':
+						switch(game.order) {
+							case 13:
+								game.firstTeamName = '2º Grupo A';
+								game.secondTeamName = '2º Grupo B';
+								break;
+							case 14:
+								game.firstTeamName = '1º Grupo A';
+								game.secondTeamName = '1º Grupo B';
+								break;
+						}
+						break;
+					case 'Beach tennis':
+					case 'Canastra':
+					case 'Dominó':
+					case 'Fut livre':
+					case 'Fut master':
+					case 'Futsal masculino':
+					case 'Tênis masculino':
+					case 'Vôlei praia masc':
+						switch(game.order) {
+							case 4:
+								game.secondTeamName = 'Perd jg 1';
+								break;
+							case 5:
+								game.secondTeamName = 'Perd jg 2';
+								break;
+							case 6:
+								game.secondTeamName = 'Perd jg 3';
+								break;
+							case 7:
+								game.secondTeamName = 'Venc jg 1';
+								break;
+							case 8:
+								game.secondTeamName = 'Venc jg 2';
+								break;
+							case 9:
+								game.secondTeamName = 'Venc jg 3';
+								break;
+							case 10:
+								game.firstTeamName = '1º Grupo A';
+								game.secondTeamName = '1º Grupo B';
+								break;
+							case 11:
+								game.firstTeamName = '1º Grupo C';
+								game.secondTeamName = '2º Melhor Col.';
+								break;
+							case 12:
+								game.firstTeamName = 'Perd jg 10';
+								game.secondTeamName = 'Perd jg 11';
+								break;
+							case 13:
+								game.firstTeamName = 'Venc jg 10';
+								game.secondTeamName = 'Venc jg 11';
+								break;
+						}
+						break;
+					case 'Futsal feminino':
+					case 'Sinuca':
+					case 'Vôlei feminino':
+					case 'Vôlei masculino':
+					case 'Vôlei praia fem':
+						switch(game.order) {
+							case 6:
+								game.secondTeamName = 'Perd jg 3';
+								break;
+							case 9:
+								game.secondTeamName = 'Venc jg 3';
+								break;
+							case 10:
+								game.firstTeamName = '2º Grupo A';
+								game.secondTeamName = '2º Grupo B';
+								break;
+							case 11:
+								game.firstTeamName = '1º Grupo A';
+								game.secondTeamName = '1º Grupo B';
+								break;
+						}
+						break;
+					case 'Tênis dupla masc':
+					case 'Tênis feminino':
+					case 'Tênis mesa fem':
+						switch(game.order) {
+							case 3:
+								game.secondTeamName = 'Perd jg 1';
+								break;
+							case 4:
+								game.secondTeamName = 'Perd jg 2';
+								break;
+							case 5:
+								game.secondTeamName = 'Venc jg 1';
+								break;
+							case 6:
+								game.secondTeamName = 'Venc jg 2';
+								break;
+							case 7:
+								game.firstTeamName = '2º Grupo A';
+								game.secondTeamName = '2º Grupo B';
+								break;
+							case 8:
+								game.firstTeamName = '1º Grupo A';
+								game.secondTeamName = '1º Grupo B';
+								break;
+						}
+						break;
+				}
+			}
 		}
 	},
 	async mounted() {
@@ -101,6 +217,7 @@ export default {
 
 		let res = await axios.get('https://apcefbaapias.azurewebsites.net/v1/web-app/rounds/matches?RoundId=' + this.id_round + '&ModalityId=' + this.id_modality);
 		this.games = res.data;
+		this.games.forEach(this.check_team);
 	}
 }
 </script>
