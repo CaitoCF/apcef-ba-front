@@ -1,6 +1,6 @@
 <template>
     <div id="info">
-        <div style="max-width: 10%;">
+        <div style="max-width: 10%; margin-left: 5%;">
             <button class="icon" v-on:click="voltar" style="cursor: pointer;"><font-awesome-icon icon="fa-solid fa-arrow-left" style="color: #163573; height: 30px; width: 30px;" />
             </button>
         </div>

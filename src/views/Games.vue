@@ -2,13 +2,11 @@
 	<div id="games">
 		<div class="top">
 			<div class="aux">
-
-				<div style="max-width: 10%;">
-					<button class="icon" v-on:click="voltar" style="cursor: pointer;"><font-awesome-icon icon="fa-solid fa-arrow-left" style="color: #163573; height: 30px; width: 30px;" />
-					</button>
-				</div>
-
 				<header class="header">
+					<div style="margin-right: 20px;">
+						<button class="icon" v-on:click="voltar"><font-awesome-icon icon="fa-solid fa-arrow-left" style="color: #163573; height: 30px; width: 30px;" />
+						</button>
+					</div>
 					<slot name="header">
 						Selecione a Rodada:
 					</slot>
@@ -263,9 +261,8 @@ hr {
 .header {
 	padding: 15px;
 	display: flex;
-	position: relative;
 	color: #163573;
-	justify-content: space-between;
+	justify-content: flex-start;
 	font-weight: bold;
 	font-size: x-large;
 	width: 100%;

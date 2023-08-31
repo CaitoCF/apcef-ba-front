@@ -29,7 +29,7 @@
                 </div>
                 <p>Regulamentos</p>
             </a>
-            <a href="#" @click="page = 'guia'">
+            <a href="/guia_atleta.pdf" target="_blank">
                 <div class="aux">
                     <div class="button">
                         <font-awesome-icon icon="fa-solid fa-book-open" style="color: #ffffff;" class="icon" />
