@@ -1,6 +1,7 @@
 <template>
     <div id="nav">
-        <router-link to="/" class="routerlink"><img src="/img/Logo.png" id="logo"></router-link>
+        <router-link to="/" class="routerlink"><img alt="APCEF LOGO" 
+            src="https://firebasestorage.googleapis.com/v0/b/apcef-ba-stg.appspot.com/o/Logo.png?alt=media&token=9b99aa72-adeb-4839-92fc-7841757e00c9" id="logo"></router-link>
         <p>XII JOGOS DO NODESTE 2023</p>
     </div>
 </template>
