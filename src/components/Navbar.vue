@@ -59,7 +59,7 @@ p {
     }
 
     p {
-        font-size: 21px;
+        font-size: 19px;
         margin-left: 4%;
         color: #ffffff;
         font-weight: bolder;

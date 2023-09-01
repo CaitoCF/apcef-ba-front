@@ -10,7 +10,7 @@
                 <p>Tabela de Jogos</p>
             </a>
 
-            <a href="#" @click="modality = true">
+            <a href="#" @click="modality = false, page = 'points'">
                 <div class="aux">
                     <div class="button">
                         <font-awesome-icon icon="fa-solid fa-trophy" style="color: #ffffff;" class="icon" />
@@ -63,32 +63,37 @@
         <modal @changed="select_modality"></modal>
     </div>
 
-    <div v-if="page == 'about'">
-        <about></about>
+    <div v-if="page == 'games' && modality == false">
+        <games :id_modality=id_modality></games>
+    </div>
+
+    <div v-if="page == 'points' && modality == false">
+        <points :id_modality=id_modality></points>
+    </div>
+
+    <div v-if="page == 'regulation' && modality == false">
+        <regulation :id_modality=id_modality></regulation>
     </div>
 
     <div v-if="page == 'info'">
         <info></info>
     </div>
 
-    <div v-if="page == 'games' && modality == false">
-        <games :id_modality=id_modality></games>
-    </div>
-
-    <div v-if="page == 'regulation' && modality == false">
-        <regulation :id_modality=id_modality></regulation>
+    <div v-if="page == 'about'">
+        <about></about>
     </div>
 </template>
 
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faVolleyball, faTrophy, faFileContract, faBookOpen, faCircleInfo, faCircleQuestion, faMagnifyingGlass, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-library.add(faVolleyball, faTrophy, faFileContract, faBookOpen, faCircleInfo, faCircleQuestion, faMagnifyingGlass, faArrowLeft);
+import { faVolleyball, faTrophy, faFileContract, faBookOpen, faCircleInfo, faCircleQuestion, faMagnifyingGlass, faArrowLeft, faRankingStar } from '@fortawesome/free-solid-svg-icons';
+library.add(faVolleyball, faTrophy, faFileContract, faBookOpen, faCircleInfo, faCircleQuestion, faMagnifyingGlass, faArrowLeft, faRankingStar);
 import modal from '../components/Modal.vue';
 import about from './About.vue';
 import info from './Info.vue';
 import games from './Games.vue';
 import regulation from './Regulation.vue';
+import points from './Points.vue';
 
 export default {
     components: {
@@ -97,6 +102,7 @@ export default {
         info,
         games,
         regulation,
+        points
     },
     name: "home-site",
     data() {

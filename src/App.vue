@@ -15,7 +15,6 @@ export default {
 </script>
 
 <style>
-
 body {
     background-color: lightgray;
 }
@@ -33,12 +32,11 @@ body {
     flex-wrap: wrap;
 }
 
-@media (pointer:coarse) { 
+@media (pointer:coarse) {
     #app {
         position: fixed;
         height: 100%;
         width: 100%;
     }
 }
-
 </style>
