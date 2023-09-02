@@ -114,5 +114,11 @@ export default {
         margin-bottom: 10%;
         line-height: 1.2;
     }
+
+    .text {
+        margin-left: 0%;
+        margin-right: 0%;
+        margin-top: 0%;
+    }
 }
 </style>

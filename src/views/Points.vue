@@ -24,6 +24,7 @@
                         <tr v-for="(item, index) in modalities" :key="index">
                             <td class="modalidade">{{ item.modalityName }}</td>
                             <td v-for="(item2, index) in item.pointsPerDivisions" :key="index">{{ item2.points }}</td>
+                            <td style="font-weight: bolder;">{{ item.total }}</td>
                         </tr>
                         <tr style="font-style: italic; font-weight: bolder;">
                             <td class="modalidade">TOTAL</td>
@@ -82,7 +83,7 @@ export default {
             header: ['', 'AL', 'BA', 'CE', 'MA', 'PB', 'PE', 'PI', 'RN', 'SE', 'TOTAL'],
             header2: ['POS', 'APCEF', 'COLETIVAS', 'DUPLAS', 'INDIVIDUAIS', 'ATLETISMO', 'NATAÇÃO', 'TOTAL'],
             footer: [],
-            footer2: ['', 'TOTAL', '0', '0', '0', '0', '0', '0'],
+            footer2: [],
             modalities: [],
             classification: [],
         };
@@ -91,16 +92,44 @@ export default {
         voltar() {
             location.reload();
         },
+        somarArray(array) {
+            return array.reduce(function (acumulador, elemento) {
+                return acumulador + elemento;
+            }, 0);
+        },
     },
     async mounted() {
         let res = await axios.get('https://apcefbaapias.azurewebsites.net/v1/web-app/points/final-table');
-        let finalPoints = res.data;
+        let finalPoints = res.data;        
         this.modalities = finalPoints.body;
+        this.modalities.forEach((element) => {
+            let sum = 0;
+            element.pointsPerDivisions.forEach((e) => {
+                sum += e.points;
+            });
+            element.total = sum;
+        });
         this.footer = finalPoints.footer;
 
         let res2 = await axios.get('https://apcefbaapias.azurewebsites.net/v1/web-app/points/final-score');
-        console.log(res2)
         this.classification = res2.data.scoreRows;
+
+        const arrayColumn = (array, column) => {
+            return array.map(item => item[column]);
+        };
+
+        let colPoints = arrayColumn(this.classification, 'colPoints');
+        this.classification.colTotal = this.somarArray(colPoints);
+        let dupPoints = arrayColumn(this.classification, 'dupPoints');
+        this.classification.dupTotal = this.somarArray(dupPoints);
+        let indPoints = arrayColumn(this.classification, 'indPoints');
+        this.classification.indTotal = this.somarArray(indPoints);
+        let atlPoints = arrayColumn(this.classification, 'atlPoints');
+        this.classification.atlTotal = this.somarArray(atlPoints);
+        let natPoints = arrayColumn(this.classification, 'natPoints');
+        this.classification.natTotal = this.somarArray(natPoints);
+
+        this.footer2 = ['', 'TOTAL', this.classification.colTotal, this.classification.dupTotal, this.classification.indTotal, this.classification.atlTotal, this.classification.natTotal];
     }
 }
 </script>

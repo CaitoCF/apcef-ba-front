@@ -1,50 +1,238 @@
 <template>
 	<div id="games">
-		<div class="top">
-			<div class="aux">
-				<header class="header">
-					<div style="margin-right: 20px;">
-						<button class="icon" v-on:click="voltar"><font-awesome-icon icon="fa-solid fa-arrow-left" style="color: #163573; height: 30px; width: 30px;" />
-						</button>
-					</div>
-					<slot name="header">
-						Selecione a Rodada:
-					</slot>
-				</header>
+		<div v-if="modality_name == null">
+			<div class="top">
+				<div class="aux">
+					<header class="header">
+						<div style="margin-right: 20px;">
+							<button class="icon" v-on:click="voltar"><font-awesome-icon icon="fa-solid fa-arrow-left" style="color: #163573; height: 30px; width: 30px;" />
+							</button>
+						</div>
+						<slot name="header">
+							Selecione a Rodada:
+						</slot>
+					</header>
 
-				<div class="select">
-					<section class="body">
-						<select name="rodada" v-model="id_round">
-							<option :value="item.id" v-for="(item, index) in rounds" :key="index">
-								{{ item.name }}
-							</option>
-						</select>
-					</section>
+					<div class="select">
+						<section class="body">
+							<select name="rodada" v-model="id_round">
+								<option :value="item.id" v-for="(item, index) in rounds" :key="index">
+									{{ item.name }}
+								</option>
+							</select>
+						</section>
+					</div>
+				</div>
+
+				<div class="search">
+					<button class="icon" v-on:click="pesquisar"><font-awesome-icon icon="fa-solid fa-magnifying-glass"
+							style="color: #ffffff;" class="icon" />
+					</button>
 				</div>
 			</div>
 
-			<div class="search">
-				<button class="icon" v-on:click="pesquisar"><font-awesome-icon icon="fa-solid fa-magnifying-glass"
-						style="color: #ffffff;" class="icon" />
-				</button>
+			<div class="mid">
+				<div class='row' v-for="(item, index) in games" :key="index">
+					<div class="info">
+						<h5 style="color: #163573;">Local: {{ item.placeName }}</h5>
+						<h5 style="color: #163573;">{{ dataAtualFormatada(item.matchDate) }}</h5>
+					</div>
+					<div class="game">
+						<div class="box little-box">{{ item.order }}</div>
+						<div class="box team">{{ item.firstTeamName }}</div>
+						<div class="box little-box">{{ item.firstTeamScore }}</div>
+						<h2 style="color: #163573;">X</h2>
+						<div class="box little-box">{{ item.secondTeamScore }}</div>
+						<div class="box team">{{ item.secondTeamName }}</div>
+					</div>
+					<hr>
+				</div>
 			</div>
 		</div>
-
-		<div class="mid">
-			<div class='row' v-for="(item, index) in games" :key="index">
-				<div class="info">
-					<h5 style="color: #163573;">Local: {{ item.placeName }}</h5>
-					<h5 style="color: #163573;">{{ dataAtualFormatada(item.matchDate) }}</h5>
+		<div v-else>
+			<div class="top2">
+				<div class="aux">
+					<header class="header2">
+						<div style="margin-right: 20px;">
+							<button class="icon" v-on:click="voltar"><font-awesome-icon icon="fa-solid fa-arrow-left" style="color: #163573; height: 30px; width: 30px;" />
+							</button>
+						</div>
+					</header>
 				</div>
-				<div class="game">
-					<div class="box little-box">{{ item.order }}</div>
-					<div class="box team">{{ item.firstTeamName }}</div>
-					<div class="box little-box">{{ item.firstTeamScore }}</div>
-					<h2 style="color: #163573;">X</h2>
-					<div class="box little-box">{{ item.secondTeamScore }}</div>
-					<div class="box team">{{ item.secondTeamName }}</div>
-				</div>
-				<hr>
+			</div>
+			<div v-if="modality_name == 'Dama'" class="table-final">
+				<table style="border: solid 2px #163573;">
+					<thead>
+						<th style="border-bottom: solid 2px #163573; padding: 10px;">FORMA DE DISPUTA: Será definida no Congresso Técnico</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td style="border-bottom: solid 2px #163573;">
+								<b>Data do Congresso Técnico:</b> 07/09/2023
+							</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: solid 2px #163573;">
+								<b>Horário:</b> 14h30m
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<b>Local:</b> APCEF/BA
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div v-if="modality_name == 'Atletismo'" class="table-final" style="display: flex; flex-direction: column; gap: 3rem; margin-top: 100px;">
+				<table style="border: solid 2px #163573;">
+					<thead>
+						<th style="border-bottom: solid 2px #163573; padding: 10px;">CONGRESSO TÉCNICO</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td style="border-bottom: solid 2px #163573;">
+								<b>Data:</b> 07/09/2023
+							</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: solid 2px #163573;">
+								<b>Horário:</b> 16h00
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<b>Local:</b> APCEF/BA
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table style="border: solid 2px #163573;">
+					<thead>
+						<th style="border-bottom: solid 2px #163573; padding: 10px;">CORRISA RÚSTICA</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td style="border-bottom: solid 2px #163573;">
+								<b>Data:</b> 08/09/2023
+							</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: solid 2px #163573;">
+								<b>Horário:</b> 7h30m
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<b>Local:</b> APCEF/BA
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table style="border: solid 2px #163573;">
+					<thead>
+						<th style="border-bottom: solid 2px #163573; padding: 10px;">PROVAS DE PISTA</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td style="border-bottom: solid 2px #163573;">
+								<b>Data:</b> 09/09/2023
+							</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: solid 2px #163573;">
+								<b>Horário:</b> 7h30m
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<b>Local:</b>UFBA
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div v-if="modality_name == 'Xadrez'" class="table-final">
+				<table style="border: solid 2px #163573;">
+					<thead>
+						<th style="border-bottom: solid 2px #163573; padding: 10px;">FORMA DE DISPUTA: Será definida no Congresso Técnico</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td style="border-bottom: solid 2px #163573;">
+								<b>Data do Congresso Técnico:</b> 07/09/2023
+							</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: solid 2px #163573;">
+								<b>Horário:</b> 15h00
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<b>Local:</b> APCEF/BA
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div v-if="modality_name == 'Natação'" class="table-final" style="display: flex; flex-direction: column; gap: 3rem; margin-top: 100px;">
+				<table style="border: solid 2px #163573;">
+					<thead>
+						<th style="border-bottom: solid 2px #163573; padding: 10px;">CONGRESSO TÉCNICO</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td style="border-bottom: solid 2px #163573;">
+								<b>Data:</b> 08/09/2023
+							</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: solid 2px #163573;">
+								<b>Horário:</b> 16h00
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<b>Local:</b> APCEF/BA
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table style="border: solid 2px #163573;">
+					<thead>
+						<th style="border-bottom: solid 2px #163573; padding: 10px;">PROVAS</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td style="border-bottom: solid 2px #163573;">
+								<b>Data:</b> 09/09/2023
+							</td>
+						</tr>
+						<tr>
+							<td style="border-bottom: solid 2px #163573;">
+								<b>Horário:</b> 14h00
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<b>Local:</b> APCEF/BA
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<table style="border: solid 2px #163573;">
+					<thead>
+						<th style="border-bottom: solid 2px #163573; padding: 10px;">BALIZAMENTO</th>
+					</thead>
+					<tbody>
+						<tr>
+							<td style="border-bottom: solid 2px #163573;">
+								<b>Data:</b> até 01/09/2023
+							</td>
+						</tr>
+					</tbody>
+				</table>
 			</div>
 		</div>
 	</div>
@@ -66,6 +254,7 @@ export default {
 			id_round: null,
 			rounds: [],
 			games: [],
+			modality_name: null,
 		};
 	},
 	methods: {
@@ -211,11 +400,20 @@ export default {
 	async mounted() {
 		let response = await axios.get('https://apcefbaapias.azurewebsites.net/v1/web-app/rounds/' + this.id_modality);
 		this.rounds = response.data;
-		this.id_round = this.rounds[0].id;
-
-		let res = await axios.get('https://apcefbaapias.azurewebsites.net/v1/web-app/rounds/matches?RoundId=' + this.id_round + '&ModalityId=' + this.id_modality);
-		this.games = res.data;
-		this.games.forEach(this.check_team);
+		if (this.rounds.length == 0) {
+			let modalities = await axios.get('https://apcefbaapias.azurewebsites.net/v1/web-app/modalities');
+			modalities = modalities.data;
+			let myModality = modalities.find((element) => {
+				return element.id == this.id_modality;
+			});
+			this.modality_name = myModality.name;
+		} else {
+			this.id_round = this.rounds[0].id;
+	
+			let res = await axios.get('https://apcefbaapias.azurewebsites.net/v1/web-app/rounds/matches?RoundId=' + this.id_round + '&ModalityId=' + this.id_modality);
+			this.games = res.data;
+			this.games.forEach(this.check_team);
+		}
 	}
 }
 </script>
@@ -233,10 +431,25 @@ export default {
 	height: 100vh;
 }
 
+.table-final {
+    height: 20vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+	align-items: center;
+    padding: 15px;
+}
+
 hr {
 	width: 90%;
 	border: 1px solid #163573;
 	margin-top: 1%;
+}
+
+table {
+	border-collapse: collapse;
+	width: 80%;
+	height: 100%;
 }
 
 .top {
@@ -246,6 +459,14 @@ hr {
 	width: 50vw;
 	height: 20vh;
 	gap: 2rem;
+}
+
+.top2 {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 50vw;
+	height: 20vh;
 }
 
 .mid {
@@ -260,6 +481,15 @@ hr {
 
 .header {
 	padding: 15px;
+	display: flex;
+	color: #163573;
+	justify-content: flex-start;
+	font-weight: bold;
+	font-size: x-large;
+	width: 100%;
+}
+
+.header2 {
 	display: flex;
 	color: #163573;
 	justify-content: flex-start;
@@ -307,9 +537,6 @@ select {
 	display: flex;
 	flex-direction: column;
 	width: 85%;
-}
-
-a {
 }
 
 .row {
@@ -396,6 +623,10 @@ a {
 
 	hr {
 		width: 90vw;
+	}
+
+	.table-final {
+		width: 100vw;
 	}
 }
 </style>

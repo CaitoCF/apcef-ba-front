@@ -10,7 +10,7 @@
                 <p>Tabela de Jogos</p>
             </a>
 
-            <a href="#" @click="modality = false, page = 'points'">
+            <a href="#" @click="page = 'points'">
                 <div class="aux">
                     <div class="button">
                         <font-awesome-icon icon="fa-solid fa-trophy" style="color: #ffffff;" class="icon" />
@@ -21,13 +21,13 @@
         </div>
 
         <div class='row'>
-            <a href="#" @click="page = 'regulation'">
+            <a href="#" @click="modality = true, page = 'points_group'">
                 <div class="aux">
                     <div class="button">
-                        <font-awesome-icon icon="fa-solid fa-file-contract" style="color: #ffffff;" class="icon" />
+                        <font-awesome-icon icon="fa-solid fa-people-group" style="color: #ffffff;" class="icon" />
                     </div>
                 </div>
-                <p>Regulamentos</p>
+                <p>Pontos por Grupo</p>
             </a>
             <a href="/guia_atleta.pdf" target="_blank">
                 <div class="aux">
@@ -57,6 +57,17 @@
                 <p>Sobre</p>
             </a>
         </div>
+
+        <div class='row'>
+            <a href="#" @click="page = 'regulation'">
+                <div class="aux">
+                    <div class="button">
+                        <font-awesome-icon icon="fa-solid fa-file-contract" style="color: #ffffff;" class="icon" />
+                    </div>
+                </div>
+                <p>Regulamentos</p>
+            </a>
+        </div>
     </div>
 
     <div class="modaldiv" v-if="modality == true">
@@ -69,6 +80,10 @@
 
     <div v-if="page == 'points' && modality == false">
         <points :id_modality=id_modality></points>
+    </div>
+
+    <div v-if="page == 'points_group' && modality == false">
+        <points_group :id_modality=id_modality></points_group>
     </div>
 
     <div v-if="page == 'regulation' && modality == false">
@@ -86,14 +101,15 @@
 
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faVolleyball, faTrophy, faFileContract, faBookOpen, faCircleInfo, faCircleQuestion, faMagnifyingGlass, faArrowLeft, faRankingStar } from '@fortawesome/free-solid-svg-icons';
-library.add(faVolleyball, faTrophy, faFileContract, faBookOpen, faCircleInfo, faCircleQuestion, faMagnifyingGlass, faArrowLeft, faRankingStar);
+import { faVolleyball, faTrophy, faFileContract, faBookOpen, faCircleInfo, faCircleQuestion, faMagnifyingGlass, faArrowLeft, faRankingStar, faPeopleGroup } from '@fortawesome/free-solid-svg-icons';
+library.add(faVolleyball, faTrophy, faFileContract, faBookOpen, faCircleInfo, faCircleQuestion, faMagnifyingGlass, faArrowLeft, faRankingStar, faPeopleGroup);
 import modal from '../components/Modal.vue';
 import about from './About.vue';
 import info from './Info.vue';
 import games from './Games.vue';
 import regulation from './Regulation.vue';
 import points from './Points.vue';
+import points_group from './PointsGroup.vue';
 
 export default {
     components: {
@@ -102,7 +118,8 @@ export default {
         info,
         games,
         regulation,
-        points
+        points,
+        points_group
     },
     name: "home-site",
     data() {
@@ -132,7 +149,7 @@ export default {
     transform: translateX(-50%);
     width: 50vw;
     height: 100vh;
-    padding-top: 10vh;
+    padding-top: 14vh;
 }
 
 .row {
