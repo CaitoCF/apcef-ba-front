@@ -72,6 +72,10 @@ export default {
     overflow-x: auto;
     display: flex;
     width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 .modal-header {
@@ -104,12 +108,10 @@ select {
     text-decoration: none;
     display: inline-block;
     font-size: 20px;
-    margin: 4px 2px;
     border-radius: 50%;
     height: 100%;
-    margin-top: 4%;
-    margin-left: 5%;
     cursor: pointer;
+    margin: 20px;
 }
 
 @media (pointer:coarse) {

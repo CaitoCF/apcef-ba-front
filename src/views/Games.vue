@@ -553,6 +553,7 @@ select {
 	justify-content: center;
 	width: 100%;
 	gap: 1.5rem;
+	margin-bottom: 50px;
 }
 
 .box {

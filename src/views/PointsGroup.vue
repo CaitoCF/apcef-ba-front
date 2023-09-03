@@ -33,9 +33,9 @@
 		<div class="mid">
 			<div class='row' v-for="(item, index) in points" :key="index">
 				<div class="points">
-					<div class="box little-box">{{ item.order }}</div>
-					<div class="box team">{{ item.teamName }}</div>
-					<div class="box little-box">{{ item.points }}</div>
+					<div class="box little-box">{{ item.order }}º</div>
+					<div class="box little-box">{{ item.teamName }}</div>
+					<div class="box points-box">{{ item.points }}pts</div>
 				</div>
 				<hr>
 			</div>
@@ -95,7 +95,7 @@ export default {
 }
 
 hr {
-	width: 50%;
+	width: 45vw;
 	border: 1px solid #163573;
 	margin-top: 5%;
 }
@@ -117,6 +117,8 @@ hr {
 	margin-top: 10%;
 	overflow-y: auto;
 	height: 60vh;
+	margin-bottom: 100px;
+	justify-content: flex-start;
 }
 
 .header {
@@ -181,8 +183,9 @@ select {
 .points {
 	display: flex;
 	align-items: center;
-	justify-content: center;
-	width: 100%;
+	justify-content: flex-start;
+	width: 90%;
+	margin-left: 1%;
 	gap: 1.5rem;
 }
 
@@ -195,16 +198,19 @@ select {
 	font-weight: bold;
 }
 
-.team {
+.points-box {
 	height: 4vh;
-	width: 15%;
+	width: 10%;
 	border-radius: 5%;
+	display: flex;
+	justify-content: flex-end;
+	padding: 10px;
 }
 
 .little-box {
 	height: 4vh;
 	border-radius: 10%;
-	width: 5%;
+	width: 7%;
 }
 
 .info {
@@ -239,21 +245,25 @@ select {
 	}
 
 	.little-box {
-		width: 13%;
+		width: 10%;
+	}
+
+	.points-box {
+		width: 20%;
 	}
 
 	.points {
-		gap: .5rem;
-		padding: 2%;
+		gap: 1rem;
+		margin-left: 0%;
+	}
+
+	hr {
+		width: 90vw;
 	}
 
 	.search {
 		width: 10%;
 		height: 25%;
-	}
-
-	hr {
-		width: 90vw;
 	}
 }
 </style>

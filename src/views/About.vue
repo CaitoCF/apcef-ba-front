@@ -106,7 +106,7 @@ export default {
     flex-direction: column;
     gap: 1rem;
     justify-content: center;
-    margin-top: 5%;
+    margin-top: 12%;
     margin-bottom: 50px;
 }
 
@@ -123,7 +123,7 @@ export default {
 .text {
     margin: 6%;
     margin-top: 2%;
-    margin-bottom: 7%;
+    margin-bottom: 15%;
     letter-spacing: 2px;
     text-align: justify;
     line-height: 1.3;

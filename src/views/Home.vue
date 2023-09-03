@@ -58,7 +58,7 @@
             </a>
         </div>
 
-        <div class='row'>
+        <div class='row' style="margin-bottom: 30px;">
             <a href="#" @click="page = 'regulation'">
                 <div class="aux">
                     <div class="button">

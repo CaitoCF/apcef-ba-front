@@ -227,6 +227,7 @@ td {
     display: flex;
     justify-content: center;
     padding: 15px;
+    margin-bottom: 70px;
 }
 
 @media (pointer:coarse) {

@@ -92,7 +92,7 @@
             </p>
         </div>
 
-        <div class="text">
+        <div class="text" style="margin-bottom: 100px;">
             <h1 class="title2">Hotéis</h1>
             <br>
             <p>
