@@ -58,7 +58,7 @@
             </a>
         </div>
 
-        <div class='row' style="margin-bottom: 30px;">
+        <div class='row regulamentos'>
             <a href="#" @click="page = 'regulation'">
                 <div class="aux">
                     <div class="button">
@@ -204,6 +204,10 @@ a {
     left: 25%;
 }
 
+.regulamentos {
+    margin-bottom: 30px;
+}
+
 @media (pointer:coarse) {
     #home {
         background-color: white;
@@ -219,6 +223,10 @@ a {
     .modaldiv {
         width: 100vw;
         left: 0;
+    }
+
+    .regulamentos {
+        margin-bottom: 50px;
     }
 }
 </style>

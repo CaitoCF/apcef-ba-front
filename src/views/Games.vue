@@ -31,7 +31,7 @@
 				</div>
 			</div>
 
-			<div class="mid">
+			<div class="mid" style="padding-bottom: 50px;">
 				<div class='row' v-for="(item, index) in games" :key="index">
 					<div class="info">
 						<h5 style="color: #163573;">Local: {{ item.placeName }}</h5>
