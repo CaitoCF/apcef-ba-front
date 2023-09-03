@@ -102,7 +102,7 @@
 <script>
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faVolleyball, faTrophy, faFileContract, faBookOpen, faCircleInfo, faCircleQuestion, faMagnifyingGlass, faArrowLeft, faRankingStar, faPeopleGroup } from '@fortawesome/free-solid-svg-icons';
-library.add(faVolleyball, faTrophy, faFileContract, faBookOpen, faCircleInfo, faCircleQuestion, faMagnifyingGlass, faArrowLeft, faRankingStar, faPeopleGroup);
+library.add(faVolleyball, faTrophy, faFileContract, faBookOpen, faCircleInfo, faCircleQuestion, faMagnifyingGlass, faArrowLeft, faRankingStar, faPeopleGroup, faInstagram, faFacebook, faYoutube);
 import modal from '../components/Modal.vue';
 import about from './About.vue';
 import info from './Info.vue';
@@ -110,6 +110,7 @@ import games from './Games.vue';
 import regulation from './Regulation.vue';
 import points from './Points.vue';
 import points_group from './PointsGroup.vue';
+import { faFacebook, faInstagram, faYoutube } from '@fortawesome/free-brands-svg-icons';
 
 export default {
     components: {

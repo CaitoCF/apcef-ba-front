@@ -17,7 +17,7 @@
             <br><br><br>
             <b>-DAMA:</b>
             <br>
-            Congress técnico para definir forma de disputa
+            Congresso técnico para definir forma de disputa
             <br>
             Data: 07/09/2023
             <br>
